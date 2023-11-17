@@ -21,7 +21,7 @@ class Wardrobe(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'wardrobe'
+        db_table = 'outfitapp_wardrobe'
 
 
 class OutfitsRecords(models.Model):

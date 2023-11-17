@@ -3,6 +3,16 @@ from django.http import HttpResponse
 from django.template import loader
 from .models import Wardrobe
 from .models import OutfitsRecords
+from django.http import JsonResponse
+
+from rest_framework.decorators import api_view
+
+
+def get_data(request):
+    data = Wardrobe.objects.all().values()
+    print(data)
+    return HttpResponse(template.render(context, request))
+
 
 
 def wardrobe_items(request):

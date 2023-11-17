@@ -21,5 +21,4 @@ urlpatterns = [
     path('', include('outfitapp.urls')),
     path("admin/", admin.site.urls),
 
-
 ]

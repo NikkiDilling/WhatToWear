@@ -37,7 +37,9 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "outfitapp"
+    "outfitapp",
+    "rest_framework",
+    'corsheaders'
 ]
 
 MIDDLEWARE = [
@@ -48,8 +50,14 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    'corsheaders.middleware.CorsMiddleware'
 ]
 
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000", # Assuming your frontend is running on localhost:3000
+    "https://www.getpostman.com" 
+
+]
 ROOT_URLCONF = "outfit_app.urls"
 
 TEMPLATES = [
@@ -79,8 +87,8 @@ DATABASES = {
         "ENGINE": "django.db.backends.mysql",
         "NAME": "app",
         "HOST": "localhost",
-        "USER": "ola",
-        "PASSWORD": "passpass",
+        "USER": "root",
+        "PASSWORD": "Rasnik2000",
         "PORT": "3306"
     }
 }
