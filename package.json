@@ -1,5 +1,5 @@
 {
-  "name": "whattowear",
+  "name": "what2wear",
   "version": "1.0.0",
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
@@ -20,6 +20,7 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-native": "0.72.6",
+    "react-native-calendars": "^1.1302.0",
     "react-native-error-boundary": "^1.2.3",
     "react-native-gesture-handler": "~2.12.0",
     "react-native-paper": "^5.11.1",

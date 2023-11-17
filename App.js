@@ -3,46 +3,81 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
 import { StatusBar } from 'expo-status-bar';
-import { View, Text } from 'react-native';
-import { SimpleLineIcons } from '@expo/vector-icons';
-//import { colours } from '../Styles/StyleSheet';
+import { SimpleLineIcons, MaterialCommunityIcons } from '@expo/vector-icons';
 import ErrorBoundary from 'react-native-error-boundary';
-//import {defaultStyle} from "./src/Styles/Stylesheet";  
-import HomeScreen from './src/BottomTab/Home'
-import MyClosetScreen from './src/BottomTab/MyClosetScreen'
-import Weather from './src/Components/Weather';
-const Tab = createMaterialBottomTabNavigator();
-const Stack = createStackNavigator()
+import HomeScreen from './src/Screens/HomeScreen'
+import MyClosetScreen from './src/Screens/MyClosetScreen'
+import MyOutfitsScreen from './src/Screens/MyOutfitsScreen';
+import OutfitCalendarScreen from './src/Screens/OutfitCalendarScreen';
+import ProfileScreen from './src/Screens/ProfileScreen'
+import {colour, Styles } from './src/Styles/Stylesheet';
 
+const Tab = createMaterialBottomTabNavigator();
+const MyClosetStack = createStackNavigator();
+const MyOutfitsStack = createStackNavigator();
 function TabNavigator() {
   return (
-    <Tab.Navigator>
+    <Tab.Navigator
+        tabBarOptions={{
+        tabBarLabelStyle: {
+            color: Styles.tabStyles.tabLabel.color,
+            fontSize: Styles.tabStyles.tabLabel.fontSize,
+        },
+    }}
+    >
       <Tab.Screen name="Home" component={HomeScreen}
         options={{
           tabBarLabel: 'Home',
           tabBarIcon: ({ color, size }) => (
-            <SimpleLineIcons name="home"/*  color={colours.HotPink} */ size={24} />
+            <SimpleLineIcons name="home" color={Styles.tabStyles.tabIcon.color} size={Styles.tabStyles.tabIcon.size} />
           ),
         }} />
-      <Tab.Screen name="My Closet" component={StackNavigator}
+      <Tab.Screen name="My Closet" component={MyClosetStackNavigator}
         options={{
           tabBarLabel: 'MyCloset',
           tabBarIcon: ({ color, size }) => (
-            <SimpleLineIcons name="user-female" /* color={colours.HotPink}  */ size={24} />
+            <MaterialCommunityIcons name="hanger" color={Styles.tabStyles.tabIcon.color} size={Styles.tabStyles.tabIcon.size} />
           ),
         }} />
+      <Tab.Screen name="My Outfits" component={MyOutfitsStackNavigator}
+        options={{
+           tabBarLabel: 'MyOutfits',
+           tabBarIcon: ({ color, size }) =>(
+             <MaterialCommunityIcons name="tshirt-v-outline" color={Styles.tabStyles.tabIcon.color} size={Styles.tabStyles.tabIcon.size} />
+           ),
+        }} />
+      <Tab.Screen name="Outfit Calendar" component={OutfitCalendarScreen}
+        options={{
+           tabBarLabel: 'OutfitCalendar',
+           tabBarIcon: ({ color, size }) =>(
+             <MaterialCommunityIcons name="calendar-month-outline" color={Styles.tabStyles.tabIcon.color} size={Styles.tabStyles.tabIcon.size} />
+           ),
+        }} />
+      <Tab.Screen name="Profile" component={ProfileScreen}
+        options={{
+           tabBarLabel: 'Profile',
+           tabBarIcon: ({ color, size }) =>(
+             <SimpleLineIcons name="user-female" color={Styles.tabStyles.tabIcon.color} size={Styles.tabStyles.tabIcon.size} />
+           ),
+        }} />
     </Tab.Navigator>
-
   )
 }
 
-function StackNavigator() {
+function MyClosetStackNavigator() {
   return (
-    <Stack.Navigator>
-      <Stack.Screen name="MyCloset" component={MyClosetScreen} />
-      
-    </Stack.Navigator>
+    <MyClosetStack.Navigator>
+      <MyClosetStack.Screen name="MyCloset" component={MyClosetScreen} />
+    </MyClosetStack.Navigator>
   )
+}
+
+function MyOutfitsStackNavigator() {
+    return (
+      <MyOutfitsStack.Navigator>
+        <MyOutfitsStack.Screen name="MyOutfits" component={MyOutfitsScreen} />
+      </MyOutfitsStack.Navigator>
+    )
 }
 
 export default function App() {
