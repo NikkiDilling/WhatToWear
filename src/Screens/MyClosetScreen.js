@@ -1,5 +1,7 @@
 import CategoryButton from '../Components/Button';
 import { View, Text } from 'react-native';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 const MyClosetCategories = [
     'Outerwear',
     'Dresses',
@@ -13,6 +15,19 @@ const MyClosetCategories = [
     'Sport'
 ];
 function MyClosetScreen({ navigation }) {
+    const [data, setData] = useState();
+    useEffect(()=> {
+
+        axios.get('http://127.0.0.1:8000/wardrobe/')
+        .then(response=> {
+            console.log(response);
+            setData(response.data)
+        })
+        .catch(e => console.log(e));
+
+    }, [])
+    
+
     const handleCategoryPress = (category) => {
         navigation.navigate('MyClosetScreen', { MyClosetCategory: category });
     };
@@ -25,7 +40,16 @@ function MyClosetScreen({ navigation }) {
                     text={MyClosetCategory}
                     onPress={() => handleCategoryPress(MyClosetCategory)}
                 />
+                
             ))}
+             <View>
+                {data && (
+                    data.map(item => {
+                        return  <Text>{item.description}</Text>
+                    })
+                )}
+             
+            </View>
         </View>
     );
 }
