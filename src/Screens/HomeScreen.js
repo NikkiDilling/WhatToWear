@@ -8,6 +8,9 @@ function HomeScreen({ navigation }) {
             <Text>Welcome to What2Wear Outfit Planner app!</Text>
             <Weather/>
             <WeatherIcon/>
+            <View>
+              <Text>  Form</Text>
+            </View>
         </View>
     );
 }
