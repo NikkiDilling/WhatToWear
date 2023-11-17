@@ -1,6 +1,5 @@
-
 import React, { useState, useEffect } from 'react';
-import { View, Text } from 'react-native';
+import {View, Text, Image} from 'react-native';
 import axios from 'axios';
 
 const apiKey = 'a9fe46a30da5b7b0cdfc7199dfa972df';
@@ -12,30 +11,33 @@ const Weather = () => {
         const fetchWeatherData = async () => {
             try {
                 const response = await axios.get(
-                    `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`
+                    `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`
                 );
                 setWeatherData(response.data);
             } catch (error) {
                 console.error('Error fetching weather data:', error);
             }
         };
-
         fetchWeatherData();
     }, []);
-
     return (
         <View>
-            {weatherData && (
+            <Text style={{ fontSize: 22 }}>
+                Today's Weather in {city}
+            </Text>
+            {weatherData && weatherData.main && weatherData.weather && (
                 <View>
-                    <Text style={{ fontSize: 24 }}>
-                        Today's Weather in {city}
-                    </Text>
                     <Text>Temperature: {weatherData.main.temp} °C</Text>
-                    <Text>Humidity: {weatherData.main.humidity}%</Text>
+                    <Text>Feels like: {weatherData.main.feels_like} °C</Text>
                     <Text>Weather: {weatherData.weather[0].description}</Text>
+                    <Text>Humidity: {weatherData.main.humidity}%</Text>
+                    <Text>
+                        Temp min-max: {weatherData.main.temp_min} °C - {weatherData.main.temp_max} °C
+                    </Text>
                 </View>
             )}
         </View>
     );
 };
 export default Weather;
+
