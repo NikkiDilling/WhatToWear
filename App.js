@@ -10,7 +10,8 @@ import MyClosetScreen from './src/Screens/MyClosetScreen'
 import MyOutfitsScreen from './src/Screens/MyOutfitsScreen';
 import OutfitCalendarScreen from './src/Screens/OutfitCalendarScreen';
 import ProfileScreen from './src/Screens/ProfileScreen'
-import {colour, Styles } from './src/Styles/Stylesheet';
+import {Styles } from './src/Styles/Stylesheet';
+
 
 const Tab = createMaterialBottomTabNavigator();
 const MyClosetStack = createStackNavigator();
@@ -92,6 +93,5 @@ export default function App() {
         <TabNavigator />
       </ErrorBoundary>
     </NavigationContainer>
-    
   );
 }

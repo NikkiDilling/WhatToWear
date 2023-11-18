@@ -53,10 +53,16 @@ const Styles  = StyleSheet.create({
             margin: '2rem',
             borderRadius: 25,
             padding: '1rem',
-            backgroundColor: colour.Pink_light,
+            backgroundColor: '#fa92d2',
+            color: colour.White
         }, 
         text:{
             color: colour.White,
+        },
+        selectBg:{
+            padding: '1rem',
+            color: 'black',
+            backgroundColor: colour.White,
         }
     },
 
