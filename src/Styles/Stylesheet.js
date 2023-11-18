@@ -48,6 +48,18 @@ const Styles  = StyleSheet.create({
             fontSize: 18,
         },
     },
+    predictionForm:{
+        container:{
+            margin: '2rem',
+            borderRadius: 25,
+            padding: '1rem',
+            backgroundColor: colour.Pink_light,
+        }, 
+        text:{
+            color: colour.White,
+        }
+    },
+
     tabStyles: {
         tabIcon: {
             color: colour.HotPink,
