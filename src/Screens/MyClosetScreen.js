@@ -17,14 +17,28 @@ const MyClosetCategories = [
     'Accessories',
     'Sport'
 ];
+
 function MyClosetScreen({ navigation }) {
     const [data, setData] = useState();
+    const [shoes, setShoes] = useState([]);
+    const [show, setShow] = useState()
+    const coat = [];
     useEffect(() => {
 
         axios.get('http://127.0.0.1:8000/wardrobe/')
             .then(response => {
                 console.log(response);
                 setData(response.data)
+                response.data.filter(ob => ob.type === "Outerwear")
+                response.data.filter(ob => ob.type === "Dresses")
+                response.data.filter(ob => ob.type === "Tops")
+                response.data.filter(ob => ob.type === "Bottoms")
+                response.data.filter(ob => ob.type === "Nightwear & Intimate")
+                response.data.filter(ob => ob.type === "Socks & Tights")
+                response.data.filter(ob => ob.type === "Bags")
+                response.data.filter(ob => ob.type === "Accessories")
+                response.data.filter(ob => ob.type === "Sport")
+                setShoes(response.data.filter(ob => ob.type === "Shoes"));
             })
             .catch(e => console.log(e));
 
@@ -32,7 +46,11 @@ function MyClosetScreen({ navigation }) {
 
 
     const handleCategoryPress = (category) => {
-        navigation.navigate('MyClosetScreen', { MyClosetCategory: category });
+       console.log(category)
+       console.log(shoes)
+ 
+       setShow(true)
+
     };
     return (
         <SafeAreaView >
@@ -47,14 +65,12 @@ function MyClosetScreen({ navigation }) {
                     />
 
                 ))}
-                <View>
-                    {data && (
-                        data.map(item => {
-                            return <Text>{item.description}</Text>
-                        })
-                    )}
 
-                </View>
+                {show && (
+                    shoes.map(item => {
+                        return <Text key={item.id}>{item.description}</Text>
+                    })
+                )}
             </ScrollView>
         </SafeAreaView>
 
