@@ -7,20 +7,15 @@ import { SafeAreaView, ScrollView } from 'react-native';
 
 const MyClosetCategories = [
     'Outerwear',
-    'Dresses',
     'Tops',
     'Bottoms',
-    'Nightwear & Intimate',
-    'Socks & Tights',
     'Shoes',
-    'Bags',
-    'Accessories',
-    'Sport'
 ];
 
 function MyClosetScreen({ navigation }) {
     const [data, setData] = useState();
     const [shoes, setShoes] = useState([]);
+    const [outware, setOutware] = useState()
     const [show, setShow] = useState()
     const coat = [];
     useEffect(() => {
@@ -29,15 +24,9 @@ function MyClosetScreen({ navigation }) {
             .then(response => {
                 console.log(response);
                 setData(response.data)
-                response.data.filter(ob => ob.type === "Outerwear")
-                response.data.filter(ob => ob.type === "Dresses")
-                response.data.filter(ob => ob.type === "Tops")
+                const outware = response.data.filter(ob => ob.type === "Coat" || "Outerwear")
+                response.data.filter(ob => ob.type === "Top")
                 response.data.filter(ob => ob.type === "Bottoms")
-                response.data.filter(ob => ob.type === "Nightwear & Intimate")
-                response.data.filter(ob => ob.type === "Socks & Tights")
-                response.data.filter(ob => ob.type === "Bags")
-                response.data.filter(ob => ob.type === "Accessories")
-                response.data.filter(ob => ob.type === "Sport")
                 setShoes(response.data.filter(ob => ob.type === "Shoes"));
             })
             .catch(e => console.log(e));
