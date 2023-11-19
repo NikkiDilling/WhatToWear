@@ -6,15 +6,14 @@ import { StatusBar } from 'expo-status-bar';
 import { SimpleLineIcons, MaterialCommunityIcons } from '@expo/vector-icons';
 import ErrorBoundary from 'react-native-error-boundary';
 import HomeScreen from './src/Screens/HomeScreen'
-import MyClosetScreen from './src/Screens/MyClosetScreen'
+import MyWardrobeScreen from './src/Screens/MyWardrobeScreen'
 import MyOutfitsScreen from './src/Screens/MyOutfitsScreen';
 import OutfitCalendarScreen from './src/Screens/OutfitCalendarScreen';
 import ProfileScreen from './src/Screens/ProfileScreen'
 import {Styles } from './src/Styles/Stylesheet';
 
-
 const Tab = createMaterialBottomTabNavigator();
-const MyClosetStack = createStackNavigator();
+const MyWardrobeStack = createStackNavigator();
 const MyOutfitsStack = createStackNavigator();
 function TabNavigator() {
   return (
@@ -33,9 +32,9 @@ function TabNavigator() {
             <SimpleLineIcons name="home" color={Styles.tabStyles.tabIcon.color} size={Styles.tabStyles.tabIcon.size} />
           ),
         }} />
-      <Tab.Screen name="My Closet" component={MyClosetStackNavigator}
+      <Tab.Screen name="My Wardrobe" component={MyWardrobeStackNavigator}
         options={{
-          tabBarLabel: 'MyCloset',
+          tabBarLabel: 'MyWardrobe',
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons name="hanger" color={Styles.tabStyles.tabIcon.color} size={Styles.tabStyles.tabIcon.size} />
           ),
@@ -65,11 +64,11 @@ function TabNavigator() {
   )
 }
 
-function MyClosetStackNavigator() {
+function MyWardrobeStackNavigator() {
   return (
-    <MyClosetStack.Navigator>
-      <MyClosetStack.Screen name="MyCloset" component={MyClosetScreen} />
-    </MyClosetStack.Navigator>
+    <MyWardrobeStack.Navigator>
+      <MyWardrobeStack.Screen name="MyWardrobe" component={MyWardrobeScreen} />
+    </MyWardrobeStack.Navigator>
   )
 }
 
@@ -80,12 +79,10 @@ function MyOutfitsStackNavigator() {
       </MyOutfitsStack.Navigator>
     )
 }
-
 export default function App() {
   const handleError = (error, stackTrace) => {
     console.error(error);
   };
-
   return (
     <NavigationContainer>
       <StatusBar style="auto" />
@@ -93,5 +90,6 @@ export default function App() {
         <TabNavigator />
       </ErrorBoundary>
     </NavigationContainer>
+    
   );
 }
