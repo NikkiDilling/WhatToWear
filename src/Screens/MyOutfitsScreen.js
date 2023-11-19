@@ -13,7 +13,6 @@ function MyOutfitsScreen({ navigation }) {
     };
     return (
         <View>
-            <Text>My Outfits</Text>
             {MyOutfitsCategories.map((MyOutfitsCategory) => (
                 <CategoryButton
                     key={MyOutfitsCategory}
