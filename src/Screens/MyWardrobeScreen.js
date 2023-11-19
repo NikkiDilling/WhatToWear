@@ -8,12 +8,8 @@ const MyWardrobeCategories = [
     'Dresses',
     'Tops',
     'Bottoms',
-    'Nightwear & Intimate',
-    'Socks & Tights',
     'Shoes',
-    'Bags',
     'Accessories',
-    'Sport'
 ];
 function MyWardrobeScreen({ navigation }) {
     const [data, setData] = useState();
@@ -27,8 +23,8 @@ function MyWardrobeScreen({ navigation }) {
             .then(response => {
                 console.log(response);
                 setData(response.data)
-                const outware = response.data.filter(ob => ob.type === "Coat" || "Outerwear")
-                response.data.filter(ob => ob.type === "Top")
+                const outerwear = response.data.filter(ob => ob.type === "Coat" || "Outerwear")
+                response.data.filter(ob => ob.type === "Tops")
                 response.data.filter(ob => ob.type === "Bottoms")
                 setShoes(response.data.filter(ob => ob.type === "Shoes"));
             })
