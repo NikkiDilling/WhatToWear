@@ -37,7 +37,6 @@ function MyWardrobeScreen({ navigation }) {
     return (
         <SafeAreaView >
             <ScrollView>
-            <Text>My Wardrobe</Text>
             {MyWardrobeCategories.map((MyWardrobeCategory) => (
                 <CategoryButton
                     key={MyWardrobeCategory}
