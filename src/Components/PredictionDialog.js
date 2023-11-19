@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { Text } from 'react-native';
 import { Styles } from '../Styles/Stylesheet';
 import { useState } from 'react';
 import { Center, Button, Modal } from 'native-base';
@@ -15,8 +15,8 @@ const PredictionDialog = ({ prediction, showModal, setShowModal }) => {
                         <Modal.CloseButton />
                         <Modal.Header>Contact Us</Modal.Header>
                         <Modal.Body>
-                            {Object.values(prediction).map(data => (
-                                <Text key={data}>{data}</Text>
+                            {Object.values(prediction).map((data, index) => (
+                                <Text key={index}>{data}</Text>
                             ))}
                         </Modal.Body>
                         <Modal.Footer>
