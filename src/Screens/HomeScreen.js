@@ -17,7 +17,7 @@ export function Example({ selection, label, setSelection }) {
                     mt="1">
                 {selection && (
                     selection.map(option => {
-                        return <Select.Item label={option} value={option.toString()} />
+                        return <Select.Item key={option.toString()} label={option} value={option.toString()} />
                     })
                 )}
             </Select>
