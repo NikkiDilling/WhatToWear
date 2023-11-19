@@ -85,10 +85,10 @@ WSGI_APPLICATION = "outfit_app.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.mysql",
-        "NAME": "app",
+         "NAME": "app",
         "HOST": "localhost",
-        "USER": "root",
-        "PASSWORD": "Rasnik2000",
+        "USER": "ola",
+        "PASSWORD": "passpass",
         "PORT": "3306"
     }
 }

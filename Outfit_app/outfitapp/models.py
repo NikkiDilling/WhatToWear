@@ -12,12 +12,9 @@ class Wardrobe(models.Model):
     id = models.AutoField(db_column='ID', primary_key=True)  # Field name made lowercase.
     type = models.CharField(db_column='Type', max_length=50, blank=True, null=True)  # Field name made lowercase.
     description = models.CharField(db_column='Description', max_length=100, blank=True, null=True)  # Field name made lowercase.
-    colour = models.CharField(db_column='Colour', max_length=50, blank=True, null=True)  # Field name made lowercase.
-    material = models.CharField(db_column='Material', max_length=50, blank=True, null=True)  # Field name made lowercase.
     warmth_level = models.SmallIntegerField(db_column='Warmth_level', blank=True, null=True)  # Field name made lowercase.
     comfort_level = models.SmallIntegerField(db_column='Comfort_level', blank=True, null=True)  # Field name made lowercase.
     formal_level = models.SmallIntegerField(db_column='Formal_level', blank=True, null=True)  # Field name made lowercase.
-    last_date_used = models.DateField(db_column='Last_date_used', blank=True, null=True)  # Field name made lowercase.
 
     class Meta:
         managed = False
@@ -33,8 +30,8 @@ class OutfitsRecords(models.Model):
     coat = models.ForeignKey(Wardrobe, models.DO_NOTHING, db_column='Coat', related_name='outfitsrecords_coat_set', blank=True, null=True)  # Field name made lowercase.
     outside_temp_max = models.FloatField(db_column='Outside_temp_max', blank=True, null=True)  # Field name made lowercase.
     outside_temp_min = models.FloatField(db_column='Outside_temp_min', blank=True, null=True)  # Field name made lowercase.
+    average_temp = models.FloatField(db_column='Average_temp', blank=True, null=True)
     precipitation = models.FloatField(db_column='Precipitation', blank=True, null=True)  # Field name made lowercase.
-    wind_speed = models.FloatField(db_column='Wind_speed', blank=True, null=True)  # Field name made lowercase.
     activity = models.CharField(db_column='Activity', max_length=50, blank=True, null=True)  # Field name made lowercase.
     mood = models.IntegerField(db_column='Mood', blank=True, null=True)  # Field name made lowercase.
 
