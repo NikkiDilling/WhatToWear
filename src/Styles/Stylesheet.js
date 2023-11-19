@@ -1,7 +1,8 @@
 import { StyleSheet, Platform, StatusBar} from "react-native";
 const colour = {
-    HotPink: "#c70049",
+    HotPink: "#ed5c9b",
     LightPink: "#fa92d2",
+    PastelPink: "#facde5",
     White: "#ffffff",
     Trans: "transparent",
     Black: "#000",
@@ -10,7 +11,7 @@ const colour = {
 const Styles  = StyleSheet.create({
     padding: {
         padding: 35,
-        paddingTop: Platform.OS === "iOS"? StatusBar.currentHeight : 0,
+        paddingTop: Platform.OS === "iOS"? StatusBar.currentHeight : 10,
     },
     textStyles: {
         text: {
@@ -26,20 +27,34 @@ const Styles  = StyleSheet.create({
           textAlign: 'center',
         },
     },
+    weatherStyles: {
+            flex: 1,
+            marginTop: 30,
+            backgroundColor: colour.White,
+            padding: 20,
+            alignItems: 'center',
+            justifyContent: 'center',
+            elevation: 10,
+    },
     formStyles: {
         container: {
             flex: 1,
-            padding: 20,
+            marginTop: 30,
             backgroundColor: colour.LightPink,
-            borderRadius: 10,
+            padding: 10,
+            borderRadius: 25,
             alignItems: 'center',
             justifyContent: 'center',
             elevation: 10,
         },
+        labelText: {
+            color: colour.White,
+            fontSize: 14,
+        },
         button: {
             backgroundColor: colour.LightPink,
             padding: 10,
-            borderRadius: 10,
+            borderRadius: 25,
             margin: 2,
             alignItems: 'center',
         },
@@ -48,32 +63,20 @@ const Styles  = StyleSheet.create({
             fontSize: 18,
         },
     },
-    predictionForm:{
-        container:{
-            margin: 16,
-            borderRadius: 25,
-            padding: 16,
-            backgroundColor: colour.LightPink,
-            color: colour.White
-        },
-        text:{
-            color: colour.White,
-        },
-        selectBg:{
-            padding: 16,
-            color: colour.Black,
-            backgroundColor: colour.White,
-        }
-    },
     tabStyles: {
         tabIcon: {
-            color: colour.HotPink,
+            activeColor: colour.LightPink,
+            inactiveColor: colour.HotPink,
             size: 30,
         },
         tabLabel: {
-            color: colour.HotPink,
-            fontSize: 10,
+            activeColor: colour.LightPink,
+            inactiveColor: colour.HotPink,
+            fontSize: 5,
         },
+    },
+    calendarStyles: {
+        marginTop: 30,
     },
 });
 export {colour, Styles};
