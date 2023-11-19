@@ -1,7 +1,7 @@
 import { StyleSheet, Platform, StatusBar} from "react-native";
 const colour = {
     HotPink: "#c70049",
-    Pink_light: "rgba(227,25,99,1)",
+    LightPink: "#fa92d2",
     White: "#ffffff",
     Trans: "transparent",
     Black: "#000",
@@ -30,14 +30,14 @@ const Styles  = StyleSheet.create({
         container: {
             flex: 1,
             padding: 20,
-            backgroundColor: colour.Pink_light,
+            backgroundColor: colour.LightPink,
             borderRadius: 10,
             alignItems: 'center',
             justifyContent: 'center',
             elevation: 10,
         },
         button: {
-            backgroundColor: colour.Pink_light,
+            backgroundColor: colour.LightPink,
             padding: 10,
             borderRadius: 10,
             margin: 2,
@@ -50,22 +50,21 @@ const Styles  = StyleSheet.create({
     },
     predictionForm:{
         container:{
-            margin: '2rem',
+            margin: 16,
             borderRadius: 25,
-            padding: '1rem',
-            backgroundColor: '#fa92d2',
+            padding: 16,
+            backgroundColor: colour.LightPink,
             color: colour.White
-        }, 
+        },
         text:{
             color: colour.White,
         },
         selectBg:{
-            padding: '1rem',
-            color: 'black',
+            padding: 16,
+            color: colour.Black,
             backgroundColor: colour.White,
         }
     },
-
     tabStyles: {
         tabIcon: {
             color: colour.HotPink,
