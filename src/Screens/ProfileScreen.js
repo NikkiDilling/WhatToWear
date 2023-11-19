@@ -1,29 +1,29 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text } from 'react-native';
 function ProfileScreen({ navigation }) {
-    const [recentlyAddedClosetItems, setRecentlyAddedClosetItems] = useState([]);
-    const [unusedClosetItems, setUnusedClosetItems] = useState([]);
+    const [recentlyAddedWardrobeItems, setRecentlyAddedWardrobeItems] = useState([]);
+    const [unusedWardrobeItems, setUnusedWardrobeItems] = useState([]);
     const [unusedOutfits, setUnusedOutfits] = useState([]);
-    const [totalClosetItems, setTotalClosetItems] = useState(0);
-    const [totalClosetValue, setTotalClosetValue] = useState(0);
+    const [totalWardrobeItems, setTotalWardrobeItems] = useState(0);
+    const [totalWardrobeValue, setTotalWardrobeValue] = useState(0);
 
     useEffect(() => {
-        const fetchClosetItems = async () => {
+        const fetchWardrobeItems = async () => {
             try {
-                const closetItemsResponse = await fetch('api_endpoint_ClosetItems');
-                const closetItemsData = await closetItemsResponse.json();
+                const wardrobeItemsResponse = await fetch('api_endpoint_WardrobeItems');
+                const wardrobeItemsData = await wardrobeItemsResponse.json();
 
-                setRecentlyAddedClosetItems(closetItemsData.recentlyAddedItems);
-                setUnusedClosetItems(closetItemsData.unusedItems);
+                setRecentlyAddedWardrobeItems(wardrobeItemsData.recentlyAddedItems);
+                setUnusedWardrobeItems(wardrobeItemsData.unusedItems);
 
-                const totalClosetItems = closetItemsData.recentlyAddedItems.length + closetItemsData.unusedItems.length;
-                const totalClosetValue = closetItemsData.recentlyAddedItems.reduce((total, item) => total + item.price, 0) +
-                closetItemsData.unusedItems.reduce((total, item) => total + item.price, 0);
+                const totalWardrobeItems = wardrobeItemsData.recentlyAddedItems.length + wardrobeItemsData.unusedItems.length;
+                const totalWardrobeValue = wardrobeItemsData.recentlyAddedItems.reduce((total, item) => total + item.price, 0) +
+                wardrobeItemsData.unusedItems.reduce((total, item) => total + item.price, 0);
 
-                setTotalClosetItems(totalClosetItems);
-                setTotalClosetValue(totalClosetValue);
+                setTotalWardrobeItems(totalWardrobeItems);
+                setTotalWardrobeValue(totalWardrobeValue);
             } catch (error) {
-                console.error('Error fetching closet items:', error);
+                console.error('Error fetching wardrobe items:', error);
             }
         };
         const fetchOutfits = () => {
@@ -31,21 +31,21 @@ function ProfileScreen({ navigation }) {
             // Fetch the unused outfits from the OutfitCalendar data
             // Update the state for the unused outfits
         };
-        fetchClosetItems();
+        fetchWardrobeItems();
         fetchOutfits();
     }, []);
 
     return (
         <View>
             <Text>My Profile</Text>
-            <Text>Recently Added Closet Items</Text>
-            {recentlyAddedClosetItems.map((ClosetItem) => (
-                <Text key={ClosetItem.id}>{ClosetItem.name}</Text>
+            <Text>Recently Added Wardrobe Items</Text>
+            {recentlyAddedWardrobeItems.map((WardrobeItem) => (
+                <Text key={WardrobeItem.id}>{WardrobeItem.name}</Text>
             ))}
 
-            <Text>Unused Closet Items</Text>
-            {unusedClosetItems.map((ClosetItem) => (
-                <Text key={ClosetItem.id}>{ClosetItem.name}</Text>
+            <Text>Unused Wardrobe Items</Text>
+            {unusedWardrobeItems.map((WardrobeItem) => (
+                <Text key={WardrobeItem.id}>{WardrobeItem.name}</Text>
             ))}
 
             <Text>Unused Outfits</Text>
