@@ -1,11 +1,11 @@
 import CategoryButton from '../Components/Button';
 import { View, Text } from 'react-native';
 const MyOutfitsCategories = [
-    'Casual',
-    'Formal',
-    'Eveningwear',
-    'Date',
-    'Sport',
+    'Work',
+    'Relax',
+    'Outside',
+    'University',
+    'Friends',
 ];
 function MyOutfitsScreen({ navigation }) {
     const handleCategoryPress = (category) => {
