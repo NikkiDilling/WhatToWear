@@ -32,6 +32,13 @@ function TabNavigator() {
             <SimpleLineIcons name="home" color={Styles.tabStyles.tabIcon.color} size={Styles.tabStyles.tabIcon.size} />
           ),
         }} />
+        <Tab.Screen name="Profile" component={ProfileScreen}
+         options={{
+          tabBarLabel: 'Profile',
+          tabBarIcon: ({ color, size }) =>(
+            <SimpleLineIcons name="user-female" color={Styles.tabStyles.tabIcon.color} size={Styles.tabStyles.tabIcon.size} />
+          ),
+         }} />
       <Tab.Screen name="My Wardrobe" component={MyWardrobeStackNavigator}
         options={{
           tabBarLabel: 'MyWardrobe',
@@ -51,13 +58,6 @@ function TabNavigator() {
            tabBarLabel: 'OutfitCalendar',
            tabBarIcon: ({ color, size }) =>(
              <MaterialCommunityIcons name="calendar-month-outline" color={Styles.tabStyles.tabIcon.color} size={Styles.tabStyles.tabIcon.size} />
-           ),
-        }} />
-      <Tab.Screen name="Profile" component={ProfileScreen}
-        options={{
-           tabBarLabel: 'Profile',
-           tabBarIcon: ({ color, size }) =>(
-             <SimpleLineIcons name="user-female" color={Styles.tabStyles.tabIcon.color} size={Styles.tabStyles.tabIcon.size} />
            ),
         }} />
     </Tab.Navigator>
