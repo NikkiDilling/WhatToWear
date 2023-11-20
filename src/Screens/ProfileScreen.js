@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text } from 'react-native';
+import { colour, Styles } from '../Styles/Stylesheet';
 function ProfileScreen({ navigation }) {
     const [recentlyAddedWardrobeItems, setRecentlyAddedWardrobeItems] = useState([]);
     const [unusedWardrobeItems, setUnusedWardrobeItems] = useState([]);
@@ -36,7 +37,7 @@ function ProfileScreen({ navigation }) {
     }, []);
 
     return (
-        <View>
+        <View style={Styles.textStyles}>
             <Text>Total Wardrobe Items: {totalWardrobeItems}</Text>
             <Text>Total Wardrobe Value: {totalWardrobeValue} DKK</Text>
 
