@@ -13,11 +13,14 @@ export function Example({ selection, label, setSelection }) {
             </FormControl.Label>
             <Select minWidth="200"
                     accessibilityLabel="Choose option"
-                    onValueChange={(e) => setSelection(e)}
+                    onValueChange={(e) => {
+                        const parsedValue = typeof e === 'string' ? e : e.toString();
+                        setSelection(parsedValue);
+                    }}
                     mt="1">
                 {selection && (
                     selection.map(option => {
-                        return <Select.Item key={option.toString()} label={option} value={option.toString()} />
+                        return <Select.Item key={option} label={option.toString()} value={option.toString()} />
                     })
                 )}
             </Select>
@@ -29,9 +32,9 @@ export function Example({ selection, label, setSelection }) {
 };
 
 function HomeScreen({ navigation }) {
-    const [mood, setMood] = useState('');
+    const [mood, setMood] = useState(1);
     const [activity, setActivity] = useState('');
-    const [comfortLevel, setComfortLevel] = useState('');
+    const [comfortLevel, setComfortLevel] = useState(1);
     const [showModal, setShowModal] = useState(false);
 
     const moodSelection = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
