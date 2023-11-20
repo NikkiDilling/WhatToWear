@@ -37,7 +37,9 @@ function ProfileScreen({ navigation }) {
 
     return (
         <View>
-            <Text>My Profile</Text>
+            <Text>Total Wardrobe Items: {totalWardrobeItems}</Text>
+            <Text>Total Wardrobe Value: {totalWardrobeValue} DKK</Text>
+
             <Text>Recently Added Wardrobe Items</Text>
             {recentlyAddedWardrobeItems.map((WardrobeItem) => (
                 <Text key={WardrobeItem.id}>{WardrobeItem.name}</Text>
