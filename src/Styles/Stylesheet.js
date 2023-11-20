@@ -13,12 +13,24 @@ const Styles  = StyleSheet.create({
         padding: 35,
         paddingTop: Platform.OS === "iOS"? StatusBar.currentHeight : 10,
     },
+    weatherStyles: {
+        flex: 1,
+        marginTop: 30,
+        backgroundColor: colour.White,
+        padding: 20,
+        alignItems: 'center',
+        justifyContent: 'center',
+        elevation: 10,
+    },
     textStyles: {
         text: {
           color: colour.Black,
           fontSize: 20,
           fontWeight: '500',
           textAlign: 'center',
+          padding: 20,
+          alignItems: 'center',
+          justifyContent: 'center',
         },
         heading: {
           color: colour.Black,
@@ -26,15 +38,6 @@ const Styles  = StyleSheet.create({
           fontWeight: '500',
           textAlign: 'center',
         },
-    },
-    weatherStyles: {
-            flex: 1,
-            marginTop: 30,
-            backgroundColor: colour.White,
-            padding: 20,
-            alignItems: 'center',
-            justifyContent: 'center',
-            elevation: 10,
     },
     formStyles: {
         container: {
@@ -72,7 +75,7 @@ const Styles  = StyleSheet.create({
         tabLabel: {
             activeColor: colour.LightPink,
             inactiveColor: colour.HotPink,
-            fontSize: 5,
+            size: 5,
         },
     },
     calendarStyles: {
