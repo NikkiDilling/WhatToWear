@@ -5,11 +5,9 @@ import axios from 'axios';
 
 const MyWardrobeCategories = [
     'Outerwear',
-    'Dresses',
     'Tops',
     'Bottoms',
     'Shoes',
-    'Accessories',
 ];
 function MyWardrobeScreen({ navigation }) {
     const [data, setData] = useState();
