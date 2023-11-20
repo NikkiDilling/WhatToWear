@@ -10,46 +10,48 @@ const MyWardrobeCategories = [
     'Shoes',
 ];
 function MyWardrobeScreen({ navigation }) {
-    const [data, setData] = useState();
+    const [data, setData] = useState([]);
+    const [outerwear, setOuterwear] = useState([])
+    const [tops, setTops] = useState([]);
+    const [bottoms, setBottoms] = useState([]);
     const [shoes, setShoes] = useState([]);
-    const [outerwear, setOuterwear] = useState()
-    const [show, setShow] = useState()
+    const [show, setShow] = useState([])
     const coat = [];
-    useEffect(() => {
 
+    useEffect(() => {
         axios.get('http://127.0.0.1:8000/wardrobe/')
             .then(response => {
-                console.log(response);
-                setData(response.data)
-                const outerwear = response.data.filter(ob => ob.type === "Coat" || "Outerwear")
-                response.data.filter(ob => ob.type === "Tops")
-                response.data.filter(ob => ob.type === "Bottoms")
-                setShoes(response.data.filter(ob => ob.type === "Shoes"));
+              console.log(response);
+              setData(response.data)
+              setOuterwear(response.data.filter(item => item.type === 'Outerwear' || item.type === 'Coat'));
+              setTops(response.data.filter(item => item.type === 'Tops'));
+              setBottoms(response.data.filter(item => item.type === 'Bottoms'));
+              setShoes(response.data.filter(item => item.type === 'Shoes'));
             })
             .catch(e => console.log(e));
-
     }, [])
+
     const handleCategoryPress = (category) => {
-        navigation.navigate('MyWardrobeScreen', { MyWardrobeCategory: category });
+        navigation.navigate('My Wardrobe Items', { category });
     };
+
     return (
         <SafeAreaView >
             <ScrollView>
-            {MyWardrobeCategories.map((MyWardrobeCategory) => (
-                <CategoryButton
-                    key={MyWardrobeCategory}
-                    text={MyWardrobeCategory}
-                    onPress={() => handleCategoryPress(MyWardrobeCategory)}
-                />
-            ))}
-            {show && (
-                shoes.map(item => {
-                    return <Text key={item.id}>{item.description}</Text>
-                })
-            )}
+                {MyWardrobeCategories.map((MyWardrobeCategory) => (
+                    <CategoryButton
+                        key={MyWardrobeCategory}
+                        text={MyWardrobeCategory}
+                        onPress={() => handleCategoryPress(MyWardrobeCategory)}
+                    />
+                ))}
+                {show && (
+                    shoes.map(item => {
+                        return <Text key={item.id}>{item.description}</Text>
+                    })
+                )}
             </ScrollView>
         </SafeAreaView>
     );
 }
 export default MyWardrobeScreen;
-

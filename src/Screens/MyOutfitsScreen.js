@@ -1,5 +1,6 @@
 import CategoryButton from '../Components/Button';
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
+
 const MyOutfitsCategories = [
     'Work',
     'Relax',
@@ -9,7 +10,7 @@ const MyOutfitsCategories = [
 ];
 function MyOutfitsScreen({ navigation }) {
     const handleCategoryPress = (category) => {
-        navigation.navigate('MyOutfitsScreen', { MyOutfitsCategory: category });
+        navigation.navigate('My Outfit Items', { MyOutfitsCategory: category });
     };
     return (
         <View>
