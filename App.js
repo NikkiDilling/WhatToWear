@@ -38,21 +38,21 @@ function TabNavigator() {
          }} />
       <Tab.Screen name="My Wardrobe" component={MyWardrobeStackNavigator}
         options={{
-          tabBarLabel: 'MyWardrobe',
+          tabBarLabel: 'Wardrobe',
           tabBarIcon: ({ color, size, focused }) => (
             <MaterialCommunityIcons name="hanger" color={focused ? Styles.tabStyles.tabIcon.activeColor : Styles.tabStyles.tabIcon.inactiveColor} size={Styles.tabStyles.tabIcon.size} />
           ),
         }} />
       <Tab.Screen name="My Outfits" component={MyOutfitsStackNavigator}
         options={{
-           tabBarLabel: 'MyOutfits',
+           tabBarLabel: 'Outfits',
            tabBarIcon: ({ color, size, focused }) =>(
              <MaterialCommunityIcons name="tshirt-v-outline" color={focused ? Styles.tabStyles.tabIcon.activeColor : Styles.tabStyles.tabIcon.inactiveColor} size={Styles.tabStyles.tabIcon.size} />
            ),
         }} />
       <Tab.Screen name="Outfit Calendar" component={OutfitCalendarScreen}
         options={{
-           tabBarLabel: 'OutfitCalendar',
+           tabBarLabel: 'Calendar',
            tabBarIcon: ({ color, size, focused }) =>(
              <MaterialCommunityIcons name="calendar-month-outline" color={focused ? Styles.tabStyles.tabIcon.activeColor : Styles.tabStyles.tabIcon.inactiveColor} size={Styles.tabStyles.tabIcon.size} />
            ),
@@ -64,21 +64,21 @@ function TabNavigator() {
 function ProfileStackNavigator() {
   return (
     <ProfileStack.Navigator>
-      <ProfileStack.Screen name="Profile" component={ProfileScreen} />
+      <ProfileStack.Screen name="My Profile" component={ProfileScreen} />
     </ProfileStack.Navigator>
   )
 }
 function MyWardrobeStackNavigator() {
   return (
     <MyWardrobeStack.Navigator>
-      <MyWardrobeStack.Screen name="MyWardrobe" component={MyWardrobeScreen} />
+      <MyWardrobeStack.Screen name="My Wardrobe" component={MyWardrobeScreen} />
     </MyWardrobeStack.Navigator>
   )
 }
 function MyOutfitsStackNavigator() {
   return (
     <MyOutfitsStack.Navigator>
-      <MyOutfitsStack.Screen name="MyOutfits" component={MyOutfitsScreen} />
+      <MyOutfitsStack.Screen name="My Outfits" component={MyOutfitsScreen} />
     </MyOutfitsStack.Navigator>
   )
 }
