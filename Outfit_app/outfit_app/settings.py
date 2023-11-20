@@ -54,7 +54,7 @@ MIDDLEWARE = [
 ]
 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:19006", # Assuming your frontend is running on localhost:3000
+    "http://localhost:19006", # Assuming your frontend is running on localhost:19006
     "https://www.getpostman.com" 
 
 ]
