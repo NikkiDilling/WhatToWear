@@ -10,60 +10,64 @@ import MyWardrobeScreen from './src/Screens/MyWardrobeScreen'
 import MyOutfitsScreen from './src/Screens/MyOutfitsScreen';
 import OutfitCalendarScreen from './src/Screens/OutfitCalendarScreen';
 import ProfileScreen from './src/Screens/ProfileScreen'
-import {Styles } from './src/Styles/Stylesheet';
+import { colour, Styles } from './src/Styles/Stylesheet';
 
 const Tab = createMaterialBottomTabNavigator();
+const ProfileStack = createStackNavigator();
 const MyWardrobeStack = createStackNavigator();
 const MyOutfitsStack = createStackNavigator();
 function TabNavigator() {
   return (
     <Tab.Navigator
-        tabBarOptions={{
-        tabBarLabelStyle: {
-            color: Styles.tabStyles.tabLabel.color,
-            fontSize: Styles.tabStyles.tabLabel.fontSize,
-        },
-    }}
+        activeColor={Styles.tabStyles.tabLabel.activeColor}
+        inactiveColor={Styles.tabStyles.tabLabel.inactiveColor}
     >
       <Tab.Screen name="Home" component={HomeScreen}
         options={{
           tabBarLabel: 'Home',
-          tabBarIcon: ({ color, size }) => (
-            <SimpleLineIcons name="home" color={Styles.tabStyles.tabIcon.color} size={Styles.tabStyles.tabIcon.size} />
+          tabBarIcon: ({ color, size, focused }) => (
+            <SimpleLineIcons name="home" color={focused ? Styles.tabStyles.tabIcon.activeColor : Styles.tabStyles.tabIcon.inactiveColor} size={Styles.tabStyles.tabIcon.size} />
           ),
         }} />
-        <Tab.Screen name="Profile" component={ProfileScreen}
+        <Tab.Screen name="Profile" component={ProfileStackNavigator}
          options={{
           tabBarLabel: 'Profile',
-          tabBarIcon: ({ color, size }) =>(
-            <SimpleLineIcons name="user-female" color={Styles.tabStyles.tabIcon.color} size={Styles.tabStyles.tabIcon.size} />
+          tabBarIcon: ({ color, size, focused }) =>(
+            <SimpleLineIcons name="user-female" color={focused ? Styles.tabStyles.tabIcon.activeColor : Styles.tabStyles.tabIcon.inactiveColor} size={Styles.tabStyles.tabIcon.size} />
           ),
          }} />
       <Tab.Screen name="My Wardrobe" component={MyWardrobeStackNavigator}
         options={{
           tabBarLabel: 'MyWardrobe',
-          tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="hanger" color={Styles.tabStyles.tabIcon.color} size={Styles.tabStyles.tabIcon.size} />
+          tabBarIcon: ({ color, size, focused }) => (
+            <MaterialCommunityIcons name="hanger" color={focused ? Styles.tabStyles.tabIcon.activeColor : Styles.tabStyles.tabIcon.inactiveColor} size={Styles.tabStyles.tabIcon.size} />
           ),
         }} />
       <Tab.Screen name="My Outfits" component={MyOutfitsStackNavigator}
         options={{
            tabBarLabel: 'MyOutfits',
-           tabBarIcon: ({ color, size }) =>(
-             <MaterialCommunityIcons name="tshirt-v-outline" color={Styles.tabStyles.tabIcon.color} size={Styles.tabStyles.tabIcon.size} />
+           tabBarIcon: ({ color, size, focused }) =>(
+             <MaterialCommunityIcons name="tshirt-v-outline" color={focused ? Styles.tabStyles.tabIcon.activeColor : Styles.tabStyles.tabIcon.inactiveColor} size={Styles.tabStyles.tabIcon.size} />
            ),
         }} />
       <Tab.Screen name="Outfit Calendar" component={OutfitCalendarScreen}
         options={{
            tabBarLabel: 'OutfitCalendar',
-           tabBarIcon: ({ color, size }) =>(
-             <MaterialCommunityIcons name="calendar-month-outline" color={Styles.tabStyles.tabIcon.color} size={Styles.tabStyles.tabIcon.size} />
+           tabBarIcon: ({ color, size, focused }) =>(
+             <MaterialCommunityIcons name="calendar-month-outline" color={focused ? Styles.tabStyles.tabIcon.activeColor : Styles.tabStyles.tabIcon.inactiveColor} size={Styles.tabStyles.tabIcon.size} />
            ),
         }} />
     </Tab.Navigator>
   )
 }
 
+function ProfileStackNavigator() {
+  return (
+    <ProfileStack.Navigator>
+      <ProfileStack.Screen name="Profile" component={ProfileScreen} />
+    </ProfileStack.Navigator>
+  )
+}
 function MyWardrobeStackNavigator() {
   return (
     <MyWardrobeStack.Navigator>
@@ -71,13 +75,12 @@ function MyWardrobeStackNavigator() {
     </MyWardrobeStack.Navigator>
   )
 }
-
 function MyOutfitsStackNavigator() {
-    return (
-      <MyOutfitsStack.Navigator>
-        <MyOutfitsStack.Screen name="MyOutfits" component={MyOutfitsScreen} />
-      </MyOutfitsStack.Navigator>
-    )
+  return (
+    <MyOutfitsStack.Navigator>
+      <MyOutfitsStack.Screen name="MyOutfits" component={MyOutfitsScreen} />
+    </MyOutfitsStack.Navigator>
+  )
 }
 export default function App() {
   const handleError = (error, stackTrace) => {
@@ -90,6 +93,5 @@ export default function App() {
         <TabNavigator />
       </ErrorBoundary>
     </NavigationContainer>
-    
   );
 }
