@@ -5,12 +5,14 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { StatusBar } from 'expo-status-bar';
 import { SimpleLineIcons, MaterialCommunityIcons } from '@expo/vector-icons';
 import ErrorBoundary from 'react-native-error-boundary';
-import HomeScreen from './src/Screens/HomeScreen'
-import MyWardrobeScreen from './src/Screens/MyWardrobeScreen'
+import HomeScreen from './src/Screens/HomeScreen';
+import MyWardrobeScreen from './src/Screens/MyWardrobeScreen';
+import WardrobeItemScreen from './src/Screens/WardrobeItemScreen';
 import MyOutfitsScreen from './src/Screens/MyOutfitsScreen';
+import OutfitScreen from './src/Screens/OutfitScreen';
 import OutfitCalendarScreen from './src/Screens/OutfitCalendarScreen';
-import ProfileScreen from './src/Screens/ProfileScreen'
-import { colour, Styles } from './src/Styles/Stylesheet';
+import ProfileScreen from './src/Screens/ProfileScreen';
+import { Styles } from './src/Styles/Stylesheet';
 
 const Tab = createMaterialBottomTabNavigator();
 const ProfileStack = createStackNavigator();
@@ -72,6 +74,7 @@ function MyWardrobeStackNavigator() {
   return (
     <MyWardrobeStack.Navigator>
       <MyWardrobeStack.Screen name="My Wardrobe" component={MyWardrobeScreen} />
+      <MyWardrobeStack.Screen name="My Wardrobe Items" component={WardrobeItemScreen} />
     </MyWardrobeStack.Navigator>
   )
 }
@@ -79,6 +82,7 @@ function MyOutfitsStackNavigator() {
   return (
     <MyOutfitsStack.Navigator>
       <MyOutfitsStack.Screen name="My Outfits" component={MyOutfitsScreen} />
+      <MyOutfitsStack.Screen name="My Outfit Items" component={OutfitScreen} />
     </MyOutfitsStack.Navigator>
   )
 }
