@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { View, Text, Image } from 'react-native';
-import { NativeBaseProvider, Select, Center, FormControl, CheckIcon, WarningOutlineIcon, Button } from "native-base";
 import { Styles } from '../Styles/Stylesheet';
+import { NativeBaseProvider, Select, FormControl, CheckIcon, WarningOutlineIcon, Button } from "native-base";
 import Weather from '../Components/Weather';
 import WeatherIcon from '../Components/WeatherIcon';
 import PredictionDialog from '../Components/PredictionDialog';
@@ -9,7 +9,7 @@ export function Example({ selection, label, setSelection }) {
     return (
         <FormControl w="3/4" maxW="300" isRequired isInvalid>
             <FormControl.Label >
-                <Text style={Styles.predictionForm.text}>{label}</Text>
+                <Text style={Styles.formStyles.labelText}>{label}</Text>
             </FormControl.Label>
             <Select minWidth="200"
                     accessibilityLabel="Choose option"
@@ -21,8 +21,8 @@ export function Example({ selection, label, setSelection }) {
                     })
                 )}
             </Select>
-            <FormControl.ErrorMessage leftIcon={<WarningOutlineIcon size="xs" style={Styles.predictionForm.text} />} >
-                <Text style={Styles.predictionForm.text}> Please make a selection!</Text>
+            <FormControl.ErrorMessage leftIcon={<WarningOutlineIcon size="xs" style={Styles.formStyles.text} />} >
+                <Text style={Styles.formStyles.text}> Please make a selection!</Text>
             </FormControl.ErrorMessage>
         </FormControl>
     );
@@ -58,28 +58,19 @@ function HomeScreen({ navigation }) {
     }
 
     return (
-        <View>
+        <View style={Styles.weatherStyles}>
             <NativeBaseProvider>
-                <Center>
                     <Text>Welcome to What2Wear Outfit Planner app!</Text>
                     <Weather />
                     <WeatherIcon />
-                    <View style={Styles.predictionForm.container}>
+                    <View style={Styles.formStyles.container}>
                         <Example selection={moodSelection} label="Choose your mood" setSelection={setMood} />
                         <Example selection={activitySelection} label="Choose activity" setSelection={setActivity} />
                         <Example selection={comfortSelection} label="Choose desired comfort level" setSelection={setComfortLevel} />
-                        <Button colorScheme="secondary" onPress={() => handleSubmitData()} style={Styles.predictionForm.button}> Submit</Button>
+                        <Button colorScheme="secondary" onPress={() => handleSubmitData()} style={Styles.formStyles.button}> Submit</Button>
                     </View>
-                    <PredictionDialog prediction={data} showModal={showModal} setShowModal={setShowModal} />
-                </Center>
             </NativeBaseProvider>
         </View>
-
     );
 }
 export default HomeScreen;
-
-
-
-
-
