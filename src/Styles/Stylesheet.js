@@ -11,11 +11,11 @@ const colour = {
 const Styles  = StyleSheet.create({
     padding: {
         padding: 35,
-        paddingTop: Platform.OS === "iOS"? StatusBar.currentHeight : 10,
+        paddingTop: Platform.OS === "ios" ? StatusBar.currentHeight || 20 : StatusBar.currentHeight + 10,
     },
     weatherStyles: {
         flex: 1,
-        marginTop: 30,
+        marginTop: 50,
         backgroundColor: colour.White,
         padding: 20,
         alignItems: 'center',
@@ -24,19 +24,19 @@ const Styles  = StyleSheet.create({
     },
     textStyles: {
         text: {
-          color: colour.Black,
-          fontSize: 20,
-          fontWeight: '500',
-          textAlign: 'center',
-          padding: 20,
-          alignItems: 'center',
-          justifyContent: 'center',
+           color: colour.Black,
+           fontSize: 20,
+           fontWeight: '500',
+           textAlign: 'center',
+           padding: 20,
+           alignItems: 'center',
+           justifyContent: 'center',
         },
         heading: {
-          color: colour.Black,
-          fontSize: 25,
-          fontWeight: '500',
-          textAlign: 'center',
+           color: colour.Black,
+           fontSize: 25,
+           fontWeight: '500',
+           textAlign: 'center',
         },
     },
     formStyles: {
@@ -50,8 +50,8 @@ const Styles  = StyleSheet.create({
             elevation: 10,
         },
         labelText: {
-            color: colour.White,
-            fontSize: 14,
+           color: colour.White,
+           fontSize: 14,
         },
         button: {
             backgroundColor: colour.LightPink,
@@ -61,24 +61,24 @@ const Styles  = StyleSheet.create({
             alignItems: 'center',
         },
         buttonText: {
-            color: colour.White,
-            fontSize: 18,
+           color: colour.White,
+           fontSize: 18,
         },
     },
     tabStyles: {
         tabIcon: {
-            activeColor: colour.LightPink,
-            inactiveColor: colour.HotPink,
-            size: 30,
+           activeColor: colour.LightPink,
+           inactiveColor: colour.HotPink,
+           size: 30,
         },
         tabLabel: {
-            activeColor: colour.LightPink,
-            inactiveColor: colour.HotPink,
-            size: 5,
+           activeColor: colour.LightPink,
+           inactiveColor: colour.HotPink,
+           size: 5,
         },
     },
     calendarStyles: {
-        marginTop: 30,
+        marginTop: 50,
     },
 });
 export {colour, Styles};

@@ -1,55 +1,44 @@
-import {Image, Text, View} from "react-native";
-import Weather from '../Components/Weather';
-const WeatherIcon = ({ weatherData, isDaytime }) => {
-        const getWeatherIcon = (weatherCondition) => {
-        let iconFile = '';
-        switch (weatherCondition) {
-            case 'clear sky':
-                iconFile = '01';
-                break;
-            case 'few clouds':
-                iconFile = '02';
-                break;
-            case 'scattered clouds':
-                iconFile = '03';
-                break;
-            case 'broken clouds':
-                iconFile = '04';
-                break;
-            case 'shower rain':
-                iconFile = '09';
-                break;
-            case 'rain':
-                iconFile = '10';
-                break;
-            case 'thunderstorm':
-                iconFile = '11';
-                break;
-            case 'snow':
-                iconFile = '13';
-                break;
-            case 'mist':
-                iconFile = '50';
-                break;
-            default:
-                iconFile = 'icon';
-                break;
-        }
-        // Append the time suffix and file extension
-        const timeSuffix = isDaytime ? 'd' : 'n';
-        return `../assets/WeatherIcons/${iconFile}${timeSuffix}@2x.png`;
-    };
+/*import {Image, View} from "react-native";
+
+// Defines the mapping of weather conditions to icon paths
+const iconMapping = {
+    'clear sky': (isDaytime) => (isDaytime ? require('assets/WeatherIcons/01d@2x.png') : require('../../assets/WeatherIcons/01n@2x.png')),
+    'few clouds': (isDaytime) => (isDaytime ? require('assets/WeatherIcons/02d@2x.png') : require('../../assets/WeatherIcons/02n@2x.png')),
+    'scattered clouds': (isDaytime) => (isDaytime ? require('assets/WeatherIcons/03d@2x.png') : require('../../assets/WeatherIcons/03n@2x.png')),
+    'broken clouds': (isDaytime) => (isDaytime ? require('assets/WeatherIcons/04d@2x.png') : require('../../assets/WeatherIcons/04n@2x.png')),
+    'shower rain': (isDaytime) => (isDaytime ? require('assets/WeatherIcons/09d@2x.png') : require('../../assets/WeatherIcons/09n@2x.png')),
+    'rain': (isDaytime) => (isDaytime ? require('assets/WeatherIcons/10d@2x.png') : require('../../assets/WeatherIcons/10n@2x.png')),
+    'thunderstorm': (isDaytime) => (isDaytime ? require('assets/WeatherIcons/11d@2x.png') : require('../../assets/WeatherIcons/11n@2x.png')),
+    'snow': (isDaytime) => (isDaytime ? require('assets/WeatherIcons/13d@2x.png') : require('../../assets/WeatherIcons/13n@2x.png')),
+    'mist': (isDaytime) => (isDaytime ? require('assets/WeatherIcons/50d@2x.png') : require('../../assets/WeatherIcons/50n@2x.png')),
+};
+
+const WeatherIcon = ({ weatherData, sunrise, sunset }) => {
+   // Helper function to calculate isDaytime. Determine if it's daytime based on currentTime, sunrise and sunset
+   const isDaytime = (sunrise, sunset) => {
+      const currentTime = new Date().getTime();
+      return currentTime > sunrise && currentTime < sunset;
+   };
+   const getWeatherIcon = (weatherCondition) => {
+       // Gets the corresponding function from the mapping
+       const iconFunction = iconMapping[weatherCondition] || iconMapping.default;
+
+       // Returns the result of the icon function
+       return iconFunction(isDaytime);
+   };
+
     return (
-        <View>
-            {weatherData && weatherData.main && weatherData.weather && (
-                <View>
-                    <Image
-                        source={{ uri: getWeatherIcon(weatherData.weather[0].main) }}
-                        style={{ width: 50, height: 50 }}
-                    />
-                </View>
-            )}
-        </View>
-    );
+     <View>
+       {weatherData && weatherData.main && weatherData.weather && (
+         <View>
+           <Image
+             source={getWeatherIcon(weatherData.weather[0].main)}
+             style={{ width: 50, height: 50 }}
+           />
+         </View>
+       )}
+     </View>
+   );
 };
 export default WeatherIcon;
+*/

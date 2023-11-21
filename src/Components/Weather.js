@@ -32,9 +32,9 @@ const Weather = () => {
             </Text>
             {weatherData && weatherData.main && weatherData.weather && (
                 <View>
+                    <Text>Weather: {weatherData.weather[0].description}</Text>
                     <Text>Temperature: {weatherData.main.temp} °C</Text>
                     <Text>Feels like: {weatherData.main.feels_like} °C</Text>
-                    <Text>Weather: {weatherData.weather[0].description}</Text>
                     <Text>Humidity: {weatherData.main.humidity}%</Text>
                     <Text>
                         Temp min-max: {weatherData.main.temp_min} °C - {weatherData.main.temp_max} °C
