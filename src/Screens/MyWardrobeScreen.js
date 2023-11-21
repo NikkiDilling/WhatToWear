@@ -6,6 +6,7 @@ import AppContext from '../AppContext';
 
 const MyWardrobeCategories = [
     'Outerwear',
+    'Jumpers',
     'Tops',
     'Bottoms',
     'Shoes',
