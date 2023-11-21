@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import {View, Text, Image} from 'react-native';
 import axios from 'axios';
+import { useContext } from 'react';
+import AppContext from '../AppContext';
 
 const apiKey = 'a9fe46a30da5b7b0cdfc7199dfa972df';
 const city = 'Copenhagen';
 const Weather = () => {
+    const ctx = useContext(AppContext);
     const [weatherData, setWeatherData] = useState(null);
 
     useEffect(() => {
@@ -14,6 +17,8 @@ const Weather = () => {
                     `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`
                 );
                 setWeatherData(response.data);
+                ctx.setWeather(response.data);
+               
             } catch (error) {
                 console.error('Error fetching weather data:', error);
             }

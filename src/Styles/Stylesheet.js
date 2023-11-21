@@ -41,10 +41,9 @@ const Styles  = StyleSheet.create({
     },
     formStyles: {
         container: {
-            flex: 1,
             marginTop: 30,
             backgroundColor: colour.LightPink,
-            padding: 10,
+            padding: '1rem',
             borderRadius: 25,
             alignItems: 'center',
             justifyContent: 'center',
@@ -56,9 +55,9 @@ const Styles  = StyleSheet.create({
         },
         button: {
             backgroundColor: colour.LightPink,
-            padding: 10,
+            padding: '1rem',
             borderRadius: 25,
-            margin: 2,
+            margin: '1rem',
             alignItems: 'center',
         },
         buttonText: {

@@ -11,6 +11,7 @@ import MyOutfitsScreen from './src/Screens/MyOutfitsScreen';
 import OutfitCalendarScreen from './src/Screens/OutfitCalendarScreen';
 import ProfileScreen from './src/Screens/ProfileScreen'
 import { colour, Styles } from './src/Styles/Stylesheet';
+import { AppContextProvider } from './src/AppContext';
 
 const Tab = createMaterialBottomTabNavigator();
 const ProfileStack = createStackNavigator();
@@ -19,8 +20,8 @@ const MyOutfitsStack = createStackNavigator();
 function TabNavigator() {
   return (
     <Tab.Navigator
-        activeColor={Styles.tabStyles.tabLabel.activeColor}
-        inactiveColor={Styles.tabStyles.tabLabel.inactiveColor}
+      activeColor={Styles.tabStyles.tabLabel.activeColor}
+      inactiveColor={Styles.tabStyles.tabLabel.inactiveColor}
     >
       <Tab.Screen name="Home" component={HomeScreen}
         options={{
@@ -29,13 +30,13 @@ function TabNavigator() {
             <SimpleLineIcons name="home" color={focused ? Styles.tabStyles.tabIcon.activeColor : Styles.tabStyles.tabIcon.inactiveColor} size={Styles.tabStyles.tabIcon.size} />
           ),
         }} />
-        <Tab.Screen name="Profile" component={ProfileStackNavigator}
-         options={{
+      <Tab.Screen name="Profile" component={ProfileStackNavigator}
+        options={{
           tabBarLabel: 'Profile',
-          tabBarIcon: ({ color, size, focused }) =>(
+          tabBarIcon: ({ color, size, focused }) => (
             <SimpleLineIcons name="user-female" color={focused ? Styles.tabStyles.tabIcon.activeColor : Styles.tabStyles.tabIcon.inactiveColor} size={Styles.tabStyles.tabIcon.size} />
           ),
-         }} />
+        }} />
       <Tab.Screen name="My Wardrobe" component={MyWardrobeStackNavigator}
         options={{
           tabBarLabel: 'Wardrobe',
@@ -45,17 +46,17 @@ function TabNavigator() {
         }} />
       <Tab.Screen name="My Outfits" component={MyOutfitsStackNavigator}
         options={{
-           tabBarLabel: 'Outfits',
-           tabBarIcon: ({ color, size, focused }) =>(
-             <MaterialCommunityIcons name="tshirt-v-outline" color={focused ? Styles.tabStyles.tabIcon.activeColor : Styles.tabStyles.tabIcon.inactiveColor} size={Styles.tabStyles.tabIcon.size} />
-           ),
+          tabBarLabel: 'Outfits',
+          tabBarIcon: ({ color, size, focused }) => (
+            <MaterialCommunityIcons name="tshirt-v-outline" color={focused ? Styles.tabStyles.tabIcon.activeColor : Styles.tabStyles.tabIcon.inactiveColor} size={Styles.tabStyles.tabIcon.size} />
+          ),
         }} />
       <Tab.Screen name="Outfit Calendar" component={OutfitCalendarScreen}
         options={{
-           tabBarLabel: 'Calendar',
-           tabBarIcon: ({ color, size, focused }) =>(
-             <MaterialCommunityIcons name="calendar-month-outline" color={focused ? Styles.tabStyles.tabIcon.activeColor : Styles.tabStyles.tabIcon.inactiveColor} size={Styles.tabStyles.tabIcon.size} />
-           ),
+          tabBarLabel: 'Calendar',
+          tabBarIcon: ({ color, size, focused }) => (
+            <MaterialCommunityIcons name="calendar-month-outline" color={focused ? Styles.tabStyles.tabIcon.activeColor : Styles.tabStyles.tabIcon.inactiveColor} size={Styles.tabStyles.tabIcon.size} />
+          ),
         }} />
     </Tab.Navigator>
   )
@@ -87,11 +88,13 @@ export default function App() {
     console.error(error);
   };
   return (
-    <NavigationContainer>
-      <StatusBar style="auto" />
-      <ErrorBoundary onError={handleError}>
-        <TabNavigator />
-      </ErrorBoundary>
-    </NavigationContainer>
+    <AppContextProvider>
+      <NavigationContainer>
+        <StatusBar style="auto" />
+        <ErrorBoundary onError={handleError}>
+          <TabNavigator />
+        </ErrorBoundary>
+      </NavigationContainer>
+    </AppContextProvider>
   );
 }

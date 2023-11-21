@@ -34,11 +34,11 @@ def receive_data(request):
     }
     """
     user_data = request.data
+    print("user data: ", user_data)
     new_label = {"activity": {"Work": 0, "Relax": 1, 'Outside': 2, 'University': 3, 'Friends': 4}}
 
-    user_input_list = [int(user_data['temp_max']), int(user_data['temp_min']), user_data['precipitation'],
+    user_input_list = [user_data['temp_max'],user_data['temp_min'], user_data['precipitation'],
                        new_label["activity"][user_data['activity']], int(user_data['mood'])]
-    print(user_input_list)
     user_input = pd.DataFrame(columns=['temp_max', 'temp_min', 'precipitation', 'activity', 'mood'])
     user_input.loc[len(user_input.index)] = user_input_list
     user_input = user_input.to_numpy()
@@ -47,6 +47,7 @@ def receive_data(request):
     training_data = pd.DataFrame(list(training_data_json))
     training_data.replace(new_label, inplace=True)
     forest = MultiOutputClassifier(RandomForestClassifier())
+
     X = training_data[['outside_temp_max', 'outside_temp_min', 'precipitation', 'activity', 'mood']].to_numpy()
     y = training_data[['top_id', 'bottoms_id', 'shoes_id', 'outerwear_id', 'coat_id']].to_numpy()
     try:
@@ -66,7 +67,7 @@ def receive_data(request):
 
 
 # Endpoint for saving user's satisfaction with the prediction/prediction
-@api_view(['PUT'])
+@api_view(['POST'])
 def save_data(request):
     """
     requires sending data in a json format of a form:
@@ -98,5 +99,6 @@ def save_data(request):
                             outerwear=outerwear, coat=coat, outside_temp_max=user_data['max_temp'],
                             outside_temp_min=user_data['min_temp'], precipitation=user_data['precipitation'],
                             activity=user_data['activity'], mood=user_data['mood'], average_temp=user_data['average_temp'])
+    print(record)
     record.save()
     return HttpResponse(status=200)
