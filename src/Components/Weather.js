@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {View, Text, Image} from 'react-native';
+import { View, Text, Image } from 'react-native';
 import axios from 'axios';
 import { useContext } from 'react';
 import AppContext from '../AppContext';
@@ -11,34 +11,54 @@ const Weather = () => {
     const [weatherData, setWeatherData] = useState(null);
 
     useEffect(() => {
-        const fetchWeatherData = async () => {
-            try {
-                const response = await axios.get(
-                    `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`
-                );
-                setWeatherData(response.data);
-                ctx.setWeather(response.data);
-               
-            } catch (error) {
-                console.error('Error fetching weather data:', error);
-            }
-        };
-        fetchWeatherData();
+
+        let longitude;
+        let latitude;
+        //will require the user to allow geolocation
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(positon => {
+                longitude = positon.coords.longitude;
+                latitude = positon.coords.latitude;
+                console.log(longitude, " ", latitude);
+                try {
+                    axios.get(
+                        `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`
+                    )
+                        .then(response => {
+                            console.log(response.data);
+                            setWeatherData(response.data);
+                            ctx.setWeather(response.data);
+                        })
+
+                } catch (error) {
+                    console.error('Error fetching weather data:', error);
+                }
+            })
+        }
+
+
+
+
     }, []);
     return (
         <View>
-            <Text style={{ fontSize: 22 }}>
-                Today's Weather in {city}
-            </Text>
-            {weatherData && weatherData.main && weatherData.weather && (
+            {weatherData && (
                 <View>
-                    <Text>Weather: {weatherData.weather[0].description}</Text>
-                    <Text>Temperature: {weatherData.main.temp} °C</Text>
-                    <Text>Feels like: {weatherData.main.feels_like} °C</Text>
-                    <Text>Humidity: {weatherData.main.humidity}%</Text>
-                    <Text>
-                        Temp min-max: {weatherData.main.temp_min} °C - {weatherData.main.temp_max} °C
+                    <Text style={{ fontSize: 22 }}>
+                        Today's Weather in {weatherData.name}
                     </Text>
+                    {weatherData && weatherData.main && weatherData.weather && (
+                        <View>
+                            <Text>Weather: {weatherData.weather[0].description}</Text>
+                            <Text>Temperature: {weatherData.main.temp} °C</Text>
+                            <Text>Feels like: {weatherData.main.feels_like} °C</Text>
+                            <Text>Humidity: {weatherData.main.humidity}%</Text>
+                            <Text>
+                                Temp min-max: {weatherData.main.temp_min} °C - {weatherData.main.temp_max} °C
+                            </Text>
+                        </View>
+
+                    )}
                 </View>
             )}
         </View>
