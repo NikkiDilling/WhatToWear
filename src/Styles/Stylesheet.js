@@ -43,7 +43,7 @@ const Styles  = StyleSheet.create({
         container: {
             marginTop: 30,
             backgroundColor: colour.LightPink,
-            padding: '1rem',
+            padding: 10,
             borderRadius: 25,
             alignItems: 'center',
             justifyContent: 'center',
@@ -55,9 +55,9 @@ const Styles  = StyleSheet.create({
         },
         button: {
             backgroundColor: colour.LightPink,
-            padding: '1rem',
+            padding: 10,
             borderRadius: 25,
-            margin: '1rem',
+            margin: 2,
             alignItems: 'center',
         },
         buttonText: {
