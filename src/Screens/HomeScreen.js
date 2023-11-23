@@ -6,7 +6,7 @@ import Weather from '../Components/Weather';
 import WeatherIcon from '../Components/WeatherIcon';
 import PredictionDialog from '../Components/PredictionDialog';
 import AppContext from '../AppContext';
-
+import axios from 'axios';
 
 export function Example({ selection, label, setSelection }) {
     const [selectedValue, setSelectedValue] = useState('');
@@ -60,7 +60,7 @@ function HomeScreen({ navigation }) {
 
         }
         ctx.setUserInput(postData);
-        //get prediction here
+        //Posts prediction here
         axios.post('http://127.0.0.1:8000/getPrediction/', postData)
             .then(response => {
                 console.log(response);
@@ -69,7 +69,7 @@ function HomeScreen({ navigation }) {
             .catch(e => console.log(e))
 
         console.log(data);
-        //Show data
+        //Shows data
         setShowModal(true);
     }
     return (
@@ -81,7 +81,7 @@ function HomeScreen({ navigation }) {
                 <View style={Styles.formStyles.container}>
                    <Example selection={moodSelection} label="Choose your mood" setSelection={setMood} />
                    <Example selection={activitySelection} label="Choose activity" setSelection={setActivity} />
-                   <Button colorScheme="secondary" onPress={() => handleSubmitData()} style={{ margin: '1rem' }}> Submit</Button>
+                   <Button colorScheme="secondary" onPress={() => handleSubmitData()} style={{ margin: 10 }}> Submit</Button>
                 </View>
                 <PredictionDialog prediction={data} showModal={showModal} setShowModal={setShowModal} />
             </NativeBaseProvider>
