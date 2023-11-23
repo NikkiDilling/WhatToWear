@@ -12,32 +12,20 @@ const Weather = () => {
 
     useEffect(() => {
 
-        let longitude;
-        let latitude;
-        //will require the user to allow geolocation
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(positon => {
-                longitude = positon.coords.longitude;
-                latitude = positon.coords.latitude;
-                console.log(longitude, " ", latitude);
-                try {
-                    axios.get(
-                        `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric`
-                    )
-                        .then(response => {
-                            console.log(response.data);
-                            setWeatherData(response.data);
-                            ctx.setWeather(response.data);
-                        })
+            try {
+                axios.get(
+                    `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`
+                )
+                    .then(response => {
+                        console.log(response.data);
+                        setWeatherData(response.data);
+                        ctx.setWeather(response.data);
+                    })
 
-                } catch (error) {
-                    console.error('Error fetching weather data:', error);
-                }
-            })
-        }
-
-
-
+            } catch (error) {
+                console.error('Error fetching weather data:', error);
+            }
+ 
 
     }, []);
     return (

@@ -15,7 +15,6 @@ function WardrobeItemScreen({ route }) {
         switch(category){
             case "Tops":
                 searchWord = "Top";
-                debugger;
                 break;
             case "Outerwear":
                 searchWord = "Coat";

@@ -29,10 +29,6 @@ export function AppContextProvider(props) {
         .then(response => {
             console.log(response);
             handleSetWardrobe(response.data);
-            /* const outerwear = response.data.filter(ob => ob.type === "Coat" || "Outerwear")
-            response.data.filter(ob => ob.type === "Tops")
-            response.data.filter(ob => ob.type === "Bottoms")
-            setShoes(response.data.filter(ob => ob.type === "Shoes")); */
         })
         .catch(e => console.log(e));
 

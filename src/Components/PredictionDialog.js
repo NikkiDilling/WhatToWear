@@ -16,7 +16,7 @@ const Loading = () => {
         </Heading>
     </HStack>;
 };
-const PredictionDialog = ({ prediction, showModal, setShowModal }) => {
+const PredictionDialog = ({ prediction, showModal, setShowModal, resetForm }) => {
     console.log(prediction);
     const ctx = useContext(AppContext);
     var filteredWardrobe;
@@ -30,29 +30,13 @@ const PredictionDialog = ({ prediction, showModal, setShowModal }) => {
         console.log(filteredWardrobe);
     }
 
-    /* {
-    "top":"1",
-    "bottoms": "10",
-    "shoes": "24",
-    "outerwear": "28",
-    "coat": "40",
-    "max_temp": "20",
-    "min_temp": "5",
-    "precipitation": "1.7",
-    "activity": "Relax",
-    "mood": "2",
-    "average_temp":"14"
-
-     temp_max: ctx.weatherApi.main.temp_max ,
-                temp_min: ctx.weatherApi.main.temp_min,
-    } */
-
     const handleDiscardPrediction = () => {
         setShowModal(false);
         //resetting previous values
         filteredWardrobe == null;
         ctx.handleSetUserInput(null);
     }
+
     const handleAcceptPrediction = () => {
 
         const record = {
@@ -65,11 +49,11 @@ const PredictionDialog = ({ prediction, showModal, setShowModal }) => {
             average_temp: (ctx.userInput.temp_min + ctx.userInput.temp_max) / 2
         }
 
-        debugger;
+
         axios.post('http://127.0.0.1:8000/savePrediction/', record)
             .then(response => {
                 console.log(response);
-                debugger;
+               
             })
             .catch(e => console.log(e))
         setShowModal(false);

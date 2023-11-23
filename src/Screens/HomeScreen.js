@@ -1,9 +1,8 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { View, Text } from 'react-native';
 import { Styles } from '../Styles/Stylesheet';
 import { NativeBaseProvider, Select, FormControl, WarningOutlineIcon, Button } from "native-base";
 import Weather from '../Components/Weather';
-import WeatherIcon from '../Components/WeatherIcon';
 import PredictionDialog from '../Components/PredictionDialog';
 import AppContext from '../AppContext';
 import axios from 'axios';
@@ -42,12 +41,14 @@ export function Example({ selection, label, setSelection }) {
 
 function HomeScreen({ navigation }) {
     const ctx = useContext(AppContext);
+    const [isAccepted, setIsAccepted] = useState(undefined);
     const [mood, setMood] = useState(1);
     const [activity, setActivity] = useState('');
     const [data, setData] = useState()
     const [showModal, setShowModal] = useState(false);
     const moodSelection = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
     const activitySelection = ['Work', 'Relax', 'Outside', 'University', 'Friends'];
+
 
     const handleSubmitData = () => {
 
